@@ -4,11 +4,23 @@ $(document).ready(function(){
 		query:'user_id='+userID+'&user_name='+userName
 	});
 
-	socket.on('user_online',function(data){
+	socket.on('show_onlines',function(data){
 		console.log(data);
-		$('.'+data.socket_id).html('Online');
+		$('.'+data.user_id).html(data.status);
 	});
-     
+	socket.on('show_onlines2',function(data){
+		console.log(data);
+		$('.'+data.user_id).html(data.status);
+	});
+	 
+	socket.on('connect',function(data){
+		$('.user').each(function(){
+			var uid = $(this).attr('uid');
+			socket.emit('check_onlines',{
+				uID:'user_'+uid
+			});
+		});
+	});
 	 var arr = []; // List of users	
 	
 	$(document).on('click', '.msg_head', function() {	

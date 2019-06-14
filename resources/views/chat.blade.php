@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <div id="chat-sidebar">
                     @foreach(\App\User::where('id','!=',Auth::user()->id)->get() as $user)
-                        <div id="sidebar-user-box" class="100" >
+                        <div id="sidebar-user-box" class="user" uid="{{$user->id}}">
                         <img src="https://freeiconshop.com/wp-content/uploads/edd/person-solid.png" />
                         <span id="slider-username">{{$user->name}} </span><span class="float-right user_{{$user->id}}"></span>
                         
